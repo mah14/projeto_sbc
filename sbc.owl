@@ -778,7 +778,16 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#supervisedBy -->
 
     <owl:ObjectProperty rdf:about="&renata;FOAF-modified#supervisedBy">
+        <rdfs:range rdf:resource="&renata;FOAF-modifiedPerson"/>
         <owl:inverseOf rdf:resource="&renata;FOAF-modified#supervisorOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&renata;FOAF-modifiedPerson"/>
+                    <rdf:Description rdf:about="&renata;FOAF-modified#Thesis"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:ObjectProperty>
     
 
