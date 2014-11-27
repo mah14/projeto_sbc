@@ -181,9 +181,10 @@ sub university{
 		$uni =~ s/\s*$//;
 		@uni = split(/\s*,\s*/, $uni);
 		return @uni;
-	} #split school name from region
+	} #spli
 	return undef;	
 }
+
 sub thesisInfo{
 	my $t = "@_";
 	if($t =~ s/FO[0-9]e\s+-\s+(.*)/$1/) { # thesis data
@@ -390,7 +391,10 @@ sub addUni{
 		%props = ('situatedAt'=> $_[-1]);
 	}
 	if (@_) {
-		print $file_out indent( newEntry ($uni[0]).class("#University").relationProps( %props).endEntry );
+		if (!$universitiesNames{$uni[0]}){
+			$universitiesNames{$uni[0]} = 1;
+			print $file_out indent( newEntry ($uni[0]).class("#University").relationProps( %props).endEntry );
+		}
 	}
 }
 
