@@ -19,7 +19,9 @@ $resource_prefix = ' rdf:resource="&renata;FOAF-modified';
 $data_prop_prefix = 'renata:FOAF-modified';
 
 #global data structures
-%peopleNames; #keep names of all professors and supervisors
+%peopleNames;
+%publishersNames;
+%universitiesNames;
 
 #########################################################################################
 #											#
@@ -29,6 +31,8 @@ $data_prop_prefix = 'renata:FOAF-modified';
 
 sub newEntry{
 	my $label = "@_";
+	chomp($label);
+	$label =~ s/^\s(.*)/$1/;
 	$label =~ s/\s+/_/g;
 	my $txt = $new_ln.'<!-- http://www.ime.usp.br/~renata/FOAF-modified#'."@_".' -->'.$new_ln.$new_ln;
 	$txt = $txt.$about_prefix.$label.'">'.$new_ln;
@@ -48,7 +52,7 @@ sub stringDataProps{
 		my $value = $hash{$key};
 		chomp($value);
 		$value =~ s/\s/_/g;
-		$txt = $txt.'<'.$data_prop_prefix.$key.'>'.$value.'</'.$data_prop_prefix.$key.'>'.$new_ln;
+		$txt = $txt.'<'.$key.'>'.$value.'</'.$key.'>'.$new_ln;
 #	        <renata:FOAF-modifiedfirstName>Arnaldo</renata:FOAF-modifiedfirstName>
    	}
 	return $txt;
@@ -107,12 +111,12 @@ sub endEntry {
 #											#
 #########################################################################################
 
-sub title{
-	for my $t (@_){
-		if ($t =~ s/Título:\s*(.*)/$1/) {
-			$t =~ s/,?\s?Ano de.*//;
-			return $t;
-		} 
+sub thesisTitle{
+	$t = $_[0];
+	if ($t =~ s/\s*Título:\s*(.*)/$1/) {
+		$t =~ s/(.*),\s*Ano.*/$1/;
+		#print $t."\n";
+		return $t; 
 	}
 }
 sub supervisor{
@@ -135,8 +139,8 @@ sub name{
 
 sub nameProps{
 	return (
-		'firstName' => $_[0],
-		'familyName' => $_[-1],
+		'renata:FOAF-modifiedfirstName' => $_[0],
+		'renata:FOAF-modifiedfamilyName' => $_[-1],
 	);
 }
 
@@ -176,20 +180,25 @@ sub gradLevel{
 sub university{
 	my $uni = "@_";
 	if($uni =~ s/FO[0-9]d\s*-\s*(.*)/$1/) { # University name	
-		$uni =~ s/\s*$//;
 		@uni = split(/\s*,\s*/, $uni);
+		chomp(@uni);
 		return @uni;
-	} #split school name from region
+	} #spli
 	return undef;	
 }
+
 sub thesisInfo{
-	my $t = "@_";
+	my $d = $_[0];
+	my $t = $_[1];
 	if($t =~ s/FO[0-9]e\s+-\s+(.*)/$1/) { # thesis data
-		#$thesis = getTitle(@t);
+		my $title = thesisTitle $t;
+		my $new = newEntry($title).class("#Thesis").stringDataProps("documentTitle"=> $title).intDataProps("publicationYear" => $d);
 		if( my $supervisor = supervisor $t) {
 			#$supervisor = addPerson($supervisor);
 			$peopleNames{ $supervisor} = 1;
-			return relationProps(('supervisedBy'=>$supervisor));
+			my $props = relationProps(('supervisedBy'=>$supervisor, $data_prop_prefix."made" => $title));
+			print $file_out indent( $new.relationProps('supervisedBy'=>$supervisor).endEntry);
+			return $props;
 		}
 	}
 	return "";
@@ -215,7 +224,7 @@ sub studyHistoric{
 				$relProps{$gradLevel."At"} = $uni[0];		#ex Person doctoradeAt Organization
 				$date{$gradLevel."From"} = $startDate;		#ex Person doctoradeFrom Organization
 				$date{$gradLevel."To"} = $endDate;		#ex Person doctoradeTo Organization
-				$hist = $hist.( thesisInfo( nextLine $file_professors));
+				$hist = $hist.( thesisInfo( $endDate, nextLine $file_professors));
 			}
 		}	
 		if ($line =~ m/TY\s*-\s*MEMBRO.*/) { 
@@ -271,7 +280,7 @@ sub findFullNames{
 }
 
 sub populateProfessors{
-	print "adding people (professors)\n"; 
+	print "adding professors\n"; 
 	while( <$file_professors>){
 		if( isNewProfessorEntry($_)){
 			my @name = name($_);		#get name
@@ -283,45 +292,90 @@ sub populateProfessors{
 		}
 	}
 	close($file_professors);
-	print "finished adding persons (professors)\n";
+	print "finished adding professors\n";
 }
 
 sub authors{
 	my $l = "@_";
 	my @authors;
 	if ($l =~ s/AU\s*-\s*(.*)/$1/){
-	#	@authors = split(/;/,$l);
 		@authors = findFullNames($l);
 	}
 	return @authors;
 }
 
-sub pubTitle{
+#receives where it was published and line to extract title from
+sub pubTitle{	
 	my $title = $_[0];
-	if ($title =~ s/TI\s*-\s*(.)/$1/){
-	#	print $title;
+	if ($title =~ s/T1\s*-\s*(.*)/$1/){
 		return $title;
+	}
+	return "";
+}
+
+sub publisherType{
+	if ($_[0] =~ s/^TY\s*-\s*(.*)/$1/){
+		if ($_[0] =~ m/CONF\s+/){
+			return "Conference";
+		}
+		if ($_[0] =~ m/MGZN\s+/){
+			return "Magazine";
+		}
+	}
+	return "";
+}
+
+sub publisherName{
+	my $name = $_[0];
+	if ($name =~ s/TI\s*-\s*(.)/$1/) {
+		return $name;
+	}
+	return "";
+}
+
+sub publicationYear{
+	if( $_[0] =~ s/PY\s*-\s*(.*)/$1/) {
+		return $_[0];
+	}
+	return 0;
+}
+
+sub addPublisher{
+	$name = $_[0];
+	$type = $_[1];
+	if( !$universitiesNames{$name} ) {
+		print $file_out indent( newEntry($name).class("#".$type).stringDataProps(($data_prop_prefix."name") => $name).endEntry);
+		$universitiesNames{$names} = 1;
 	}
 }
 
-sub addPublication{
-	while (my $l = <$file_publications>){
-		if ($l =~ s/TY\s*-\s*(.*)/$1/){
-			my $publisher = $l; #Jounal or conference	
-			my @authors = authors( nextLine($file_publications));
-			my $pub_title = pubTitle( nextLine $file_publications);
-			if ($pub_title) {
-				my $new_pub = newEntry($pub_title).class("#Article");
-				$new_pub = $new_pub.relationProps(("publishedAt" => $publisher));
-				$new_pub = $new_pub.stringDataProps(("title" => $pub_title));
-				foreach my $a (@authors){
-					$new_pub = $new_pub.relationProps(("maker" => $a));
-				}
-				print $file_out indent($new_pub.endEntry);
+sub addPublications{
+	print "adding publications\n";
+	while( my $l = <$file_publications>) {
+		my $publisherType = publisherType $l;
+		if (!$publisherType) { next; }  #conference or magazine	
+		my @authors = authors( nextLine $file_publications);
+		my $pub_title = pubTitle( nextLine $file_publications);
+		my $publisherName = publisherName( nextLine $file_publications);
+		#print "name: $publisherName    -    type: $publisherType\n";
+		addPublisher( $publisherName, $publisherType);
+		my $new = newEntry($pub_title).class( '#Article');
+		$new = $new.relationProps( "publishedAt" => $publisherName);
+		$new = $new.stringDataProps( 'documentTitle' => "$pub_title");
+		foreach my $a( @authors){
+			$new = $new.relationProps(( $data_prop_prefix."maker") => $a);
+		}
+		while ($l = nextLine $file_publications){
+			my $publicationYear = publicationYear($l);
+			if( $publicationYear) {
+				$new = $new.intDataProps("publicationYear" => $publicationYear);
+				last;
 			}
 		}
+		print $file_out indent($new.endEntry);
 	}
 	close $file_publications;
+	print "finished adding publications\n"
 }
 
 sub addUni{
@@ -330,7 +384,10 @@ sub addUni{
 		%props = ('situatedAt'=> $_[-1]);
 	}
 	if (@_) {
-		print $file_out indent( newEntry ($uni[0]).class("#University").relationProps( %props).endEntry );
+		if (!$universitiesNames{$uni[0]}){
+			$universitiesNames{$uni[0]} = 1;
+			print $file_out indent( newEntry ($uni[0]).class("#University").relationProps( %props).endEntry );
+		}
 	}
 }
 
@@ -353,6 +410,6 @@ copyLines; #copy ontology definition from file
 populateProfessors; 
 #foreach my $k ( keys %peopleNames){
 #	print $k.new_ln;}
-#addPublication;
+addPublications;
 print $file_out $end_doc;
 
