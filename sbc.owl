@@ -1182,8 +1182,8 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#documentTitle -->
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#documentTitle">
-        <rdfs:domain rdf:resource="&renata;FOAF-modifiedPerson"/>
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modifiedtitle"/>
+        <rdfs:domain rdf:resource="&renata;FOAF-modified#ResearchWork"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -1200,15 +1200,6 @@
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#mastersStudentTo">
         <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentTo"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.ime.usp.br/~renata/FOAF-modified#personTitle -->
-
-    <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#personTitle">
-        <rdfs:domain rdf:resource="&renata;FOAF-modifiedPerson"/>
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modifiedtitle"/>
     </owl:DatatypeProperty>
     
 
