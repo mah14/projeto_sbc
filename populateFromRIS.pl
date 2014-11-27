@@ -48,7 +48,7 @@ sub stringDataProps{
 		my $value = $hash{$key};
 		chomp($value);
 		$value =~ s/\s/_/g;
-		$txt = $txt.'<'.$data_prop_prefix.$key.'>'.$value.'</'.$data_prop_prefix.$key.'>'.$new_ln;
+		$txt = $txt.'<'.$key.'>'.$value.'</'.$key.'>'.$new_ln;
 #	        <renata:FOAF-modifiedfirstName>Arnaldo</renata:FOAF-modifiedfirstName>
    	}
 	return $txt;
@@ -135,8 +135,8 @@ sub name{
 
 sub nameProps{
 	return (
-		'firstName' => $_[0],
-		'familyName' => $_[-1],
+		'renata:FOAF-modifiedfirstName' => $_[0],
+		'renata:FOAF-modifiedfamilyName' => $_[-1],
 	);
 }
 
@@ -352,11 +352,10 @@ sub addPublications{
 			next; }  #conference or magazine	
 		my @authors = authors( nextLine $file_publications);
 		my $pub_title = pubTitle( nextLine $file_publications);
-		print "$publisherType ";
 		my $publisherName = publisherName( nextLine $file_publications);
 		my $new = newEntry($pub_title).class( '#Article');
 		$new = $new.relationProps( "publishedAt" => $publisherName);
-		$new = $new.stringDataProps( '#documentTitle' => "$pub_title");
+		$new = $new.stringDataProps( 'documentTitle' => "$pub_title");
 		foreach my $a( @authors){
 			$new = $new.relationProps( "maker" => $a);
 		}
