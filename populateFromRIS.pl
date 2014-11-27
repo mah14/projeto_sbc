@@ -271,7 +271,7 @@ sub findFullNames{
 }
 
 sub populateProfessors{
-	print "adding people (professors)\n"; 
+	print "adding professors\n"; 
 	while( <$file_professors>){
 		if( isNewProfessorEntry($_)){
 			my @name = name($_);		#get name
@@ -283,45 +283,94 @@ sub populateProfessors{
 		}
 	}
 	close($file_professors);
-	print "finished adding persons (professors)\n";
+	print "finished adding professors\n";
 }
 
 sub authors{
 	my $l = "@_";
 	my @authors;
 	if ($l =~ s/AU\s*-\s*(.*)/$1/){
-	#	@authors = split(/;/,$l);
 		@authors = findFullNames($l);
 	}
 	return @authors;
 }
 
-sub pubTitle{
+#receives where it was published and line to extract title from
+sub pubTitle{	
+	#my $type = $_[0];
 	my $title = $_[0];
-	if ($title =~ s/TI\s*-\s*(.)/$1/){
-	#	print $title;
+	#if ($type eq "CONF" or $type eq "MGZN"){
+	if ($title =~ s/T1\s*-\s*(.*)/$1/){
 		return $title;
 	}
+	#elsif ($type eq "JOUR" or $type eq "BOOK"){
+	#	$title =~ s/TI\s*-\s*(.)/$1/	
+#	}
+	#print $title;
+	return "";
 }
 
-sub addPublication{
-	while (my $l = <$file_publications>){
-		if ($l =~ s/TY\s*-\s*(.*)/$1/){
-			my $publisher = $l; #Jounal or conference	
-			my @authors = authors( nextLine($file_publications));
-			my $pub_title = pubTitle( nextLine $file_publications);
-			if ($pub_title) {
-				my $new_pub = newEntry($pub_title).class("#Article");
-				$new_pub = $new_pub.relationProps(("publishedAt" => $publisher));
-				$new_pub = $new_pub.stringDataProps(("title" => $pub_title));
-				foreach my $a (@authors){
-					$new_pub = $new_pub.relationProps(("maker" => $a));
-				}
-				print $file_out indent($new_pub.endEntry);
-			}
+sub publisherType{
+	if ($_[0] =~ s/^TY\s*-\s*(.*)/$1/){
+		#return $_[0];
+		if ($_[0] =~ m/CONF\s+/){
+			return "Conference";
+		}
+		if ($_[0] =~ m/MGZN\s+/){
+			return "Magazine";
 		}
 	}
+	return "";
+}
+
+sub publisherName{
+#	my $type = $_[0];
+	my $name = $_[0];
+#	if ($type eq "CONF" or $type eq "MGZN" or $type eq "BOOK"){
+	if ($name =~ s/TI\s*-\s*(.)/$1/) {
+		return $name;
+	}
+#	}
+#	elsif ($type eq "JOUR"){
+#		$name =~ s/JO\s*-\s*(.)/$1/	
+#	}
+	return "";
+}
+
+sub publicationYear{
+	if( $_[0] =~ s/PY\s*-\s*(.*)/$1/) {
+		return $_[0];
+	}
+	return 0;
+}
+
+sub addPublications{
+	print "adding publications\n";
+	while( my $l = <$file_publications>) {
+		my $publisherType = publisherType $l;
+		if (!$publisherType) { 
+			next; }  #conference or magazine	
+		my @authors = authors( nextLine $file_publications);
+		my $pub_title = pubTitle( nextLine $file_publications);
+		print "$publisherType ";
+		my $publisherName = publisherName( nextLine $file_publications);
+		my $new = newEntry($pub_title).class( '#Article');
+		$new = $new.relationProps( "publishedAt" => $publisherName);
+		$new = $new.stringDataProps( '#documentTitle' => "$pub_title");
+		foreach my $a( @authors){
+			$new = $new.relationProps( "maker" => $a);
+		}
+		while ($l = nextLine $file_publications){
+			my $publicationYear = publicationYear($l);
+			if( $publicationYear) { 
+				$new = $new.intDataProps("publicationYear" => $publicationYear);
+				last;
+			}
+		}
+		print $file_out indent($new.endEntry);
+	}
 	close $file_publications;
+	print "finished adding publications\n"
 }
 
 sub addUni{
@@ -353,6 +402,6 @@ copyLines; #copy ontology definition from file
 populateProfessors; 
 #foreach my $k ( keys %peopleNames){
 #	print $k.new_ln;}
-#addPublication;
+addPublications;
 print $file_out $end_doc;
 
