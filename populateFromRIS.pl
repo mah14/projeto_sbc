@@ -19,7 +19,9 @@ $resource_prefix = ' rdf:resource="&renata;FOAF-modified';
 $data_prop_prefix = 'renata:FOAF-modified';
 
 #global data structures
-%peopleNames; #keep names of all professors and supervisors
+%peopleNames;
+%publishersNames;
+%universitiesNames;
 
 #########################################################################################
 #											#
@@ -344,15 +346,25 @@ sub publicationYear{
 	return 0;
 }
 
+sub addPublisher{
+	$name = $_[0];
+	$type = $_[1];
+	if( !$universitiesNames{$name} ) {
+		print $file_out indent( newEntry($name).class("#".$type).stringDataProps(($data_prop_prefix."name") => $name).endEntry);
+		$universitiesNames{$names} = 1;
+	}
+}
+
 sub addPublications{
 	print "adding publications\n";
 	while( my $l = <$file_publications>) {
 		my $publisherType = publisherType $l;
-		if (!$publisherType) { 
-			next; }  #conference or magazine	
+		if (!$publisherType) { next; }  #conference or magazine	
 		my @authors = authors( nextLine $file_publications);
 		my $pub_title = pubTitle( nextLine $file_publications);
 		my $publisherName = publisherName( nextLine $file_publications);
+		#print "name: $publisherName    -    type: $publisherType\n";
+		addPublisher( $publisherName, $publisherType);
 		my $new = newEntry($pub_title).class( '#Article');
 		$new = $new.relationProps( "publishedAt" => $publisherName);
 		$new = $new.stringDataProps( 'documentTitle' => "$pub_title");
@@ -361,7 +373,7 @@ sub addPublications{
 		}
 		while ($l = nextLine $file_publications){
 			my $publicationYear = publicationYear($l);
-			if( $publicationYear) { 
+			if( $publicationYear) {
 				$new = $new.intDataProps("publicationYear" => $publicationYear);
 				last;
 			}
