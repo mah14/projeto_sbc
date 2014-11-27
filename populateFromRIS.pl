@@ -31,6 +31,8 @@ $data_prop_prefix = 'renata:FOAF-modified';
 
 sub newEntry{
 	my $label = "@_";
+	chomp($label);
+	$label =~ s/^\s(.*)/$1/;
 	$label =~ s/\s+/_/g;
 	my $txt = $new_ln.'<!-- http://www.ime.usp.br/~renata/FOAF-modified#'."@_".' -->'.$new_ln.$new_ln;
 	$txt = $txt.$about_prefix.$label.'">'.$new_ln;
@@ -109,12 +111,12 @@ sub endEntry {
 #											#
 #########################################################################################
 
-sub title{
-	for my $t (@_){
-		if ($t =~ s/Título:\s*(.*)/$1/) {
-			$t =~ s/,?\s?Ano de.*//;
-			return $t;
-		} 
+sub thesisTitle{
+	$t = $_[0];
+	if ($t =~ s/\s*Título:\s*(.*)/$1/) {
+		$t =~ s/(.*),\s*Ano.*/$1/;
+		#print $t."\n";
+		return $t; 
 	}
 }
 sub supervisor{
@@ -178,21 +180,25 @@ sub gradLevel{
 sub university{
 	my $uni = "@_";
 	if($uni =~ s/FO[0-9]d\s*-\s*(.*)/$1/) { # University name	
-		$uni =~ s/\s*$//;
 		@uni = split(/\s*,\s*/, $uni);
+		chomp(@uni);
 		return @uni;
 	} #spli
 	return undef;	
 }
 
 sub thesisInfo{
-	my $t = "@_";
+	my $d = $_[0];
+	my $t = $_[1];
 	if($t =~ s/FO[0-9]e\s+-\s+(.*)/$1/) { # thesis data
-		#$thesis = getTitle(@t);
+		my $title = thesisTitle $t;
+		my $new = newEntry($title).class("#Thesis").stringDataProps("documentTitle"=> $title).intDataProps("publicationYear" => $d);
 		if( my $supervisor = supervisor $t) {
 			#$supervisor = addPerson($supervisor);
 			$peopleNames{ $supervisor} = 1;
-			return relationProps(('supervisedBy'=>$supervisor));
+			my $props = relationProps(('supervisedBy'=>$supervisor, $data_prop_prefix."made" => $title));
+			print $file_out indent( $new.relationProps('supervisedBy'=>$supervisor).endEntry);
+			return $props;
 		}
 	}
 	return "";
@@ -218,7 +224,7 @@ sub studyHistoric{
 				$relProps{$gradLevel."At"} = $uni[0];		#ex Person doctoradeAt Organization
 				$date{$gradLevel."From"} = $startDate;		#ex Person doctoradeFrom Organization
 				$date{$gradLevel."To"} = $endDate;		#ex Person doctoradeTo Organization
-				$hist = $hist.( thesisInfo( nextLine $file_professors));
+				$hist = $hist.( thesisInfo( $endDate, nextLine $file_professors));
 			}
 		}	
 		if ($line =~ m/TY\s*-\s*MEMBRO.*/) { 
@@ -300,22 +306,15 @@ sub authors{
 
 #receives where it was published and line to extract title from
 sub pubTitle{	
-	#my $type = $_[0];
 	my $title = $_[0];
-	#if ($type eq "CONF" or $type eq "MGZN"){
 	if ($title =~ s/T1\s*-\s*(.*)/$1/){
 		return $title;
 	}
-	#elsif ($type eq "JOUR" or $type eq "BOOK"){
-	#	$title =~ s/TI\s*-\s*(.)/$1/	
-#	}
-	#print $title;
 	return "";
 }
 
 sub publisherType{
 	if ($_[0] =~ s/^TY\s*-\s*(.*)/$1/){
-		#return $_[0];
 		if ($_[0] =~ m/CONF\s+/){
 			return "Conference";
 		}
@@ -327,16 +326,10 @@ sub publisherType{
 }
 
 sub publisherName{
-#	my $type = $_[0];
 	my $name = $_[0];
-#	if ($type eq "CONF" or $type eq "MGZN" or $type eq "BOOK"){
 	if ($name =~ s/TI\s*-\s*(.)/$1/) {
 		return $name;
 	}
-#	}
-#	elsif ($type eq "JOUR"){
-#		$name =~ s/JO\s*-\s*(.)/$1/	
-#	}
 	return "";
 }
 
@@ -370,7 +363,7 @@ sub addPublications{
 		$new = $new.relationProps( "publishedAt" => $publisherName);
 		$new = $new.stringDataProps( 'documentTitle' => "$pub_title");
 		foreach my $a( @authors){
-			$new = $new.relationProps( "maker" => $a);
+			$new = $new.relationProps(( $data_prop_prefix."maker") => $a);
 		}
 		while ($l = nextLine $file_publications){
 			my $publicationYear = publicationYear($l);
