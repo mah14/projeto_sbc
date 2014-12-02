@@ -17,7 +17,7 @@ workEntryTemplate = [
         "</owl:NamedIndividual>\n\n"]
 
 def populateOntologyWorks():
-    output = open("populated2.owl","w")
+    output = open("populado2.owl","w")
     for w in works:
         name = "_".join(w.title.split(' '))
         output.write (workEntryTemplate[0]+name+workEntryTemplate[1]+name)
@@ -29,6 +29,24 @@ def populateOntologyWorks():
         output.write (workEntryTemplate[5]+author+workEntryTemplate[6])
         output.write (workEntryTemplate[7]+name+workEntryTemplate[8])
         output.write (workEntryTemplate[9])
+
+def MergeOnthologies():
+    lastLine = "</rdf:RDF>"
+    onto1 = open("populado.owl", "r")
+    onto2 = open("populado2.owl", "r")
+    ontoFinal = open("populadoFinal.owl", "w")
+    while True:
+        l = onto1.readline()
+        if not (lastLine in l):
+            break
+        ontoFinal.write(l)
+    while True:
+        l = onto2.readline()
+        if not l:
+            break
+        ontoFinal.write(l)
+    ontoFinal.write(lastLine)
+
 
 class Work():
     student = ""
@@ -119,5 +137,5 @@ def ExtractedData():
 parser = Parser()
 html = open("OA-0.html",'r')
 parser.feed(html.read())
-ExtractedData()
 populateOntologyWorks()
+MergeOnthologies()
