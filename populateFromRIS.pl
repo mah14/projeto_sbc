@@ -1,13 +1,13 @@
 #! /usr/bin/perl
 
 
-open($file_professors, "<",'sbc-membros.ris')
+open($file_professors, "<",'lattes_out/sbc-membros.ris')
 	or die "não foi possivel abrir o arquivo";
 open($file_proj, "<",'sbc.owl')
 	or die "não foi possivel abrir o arquivo";
 open($file_out, ">",'populado.owl')
 	or die "não foi possivel abrir o arquivo";
-open($file_publications, "<", 'sbc-publicacoes.ris')
+open($file_publications, "<", 'lattes_out/sbc-publicacoes.ris')
 	or die "não foi possivel abrir o arquivo";
 
 # constant strings
@@ -285,10 +285,10 @@ sub populateProfessors{
 		if( isNewProfessorEntry($_)){
 			my @name = name($_);		#get name
 			keepName("@name");
-			my $new_ind = newEntry("@name").class ('Person'). stringDataProps( nameProps @name).studyHistoric.endEntry;
-			print $file_out $new_ln;	
-			print $file_out indent($new_ind);
-			print $file_out $new_ln;
+			my $new = newEntry("@name").class ('Person'). stringDataProps( nameProps @name).studyHistoric.relationProps("affiliatedTo" => "IME").endEntry;
+			print $file_out $new;	
+			print $file_out indent($new);
+			print $file_out $new;
 		}
 	}
 	close($file_professors);
@@ -407,6 +407,7 @@ sub copyLines {
 }
 
 copyLines; #copy ontology definition from file
+print $file_out indent(newEntry("IME").class("#Department").relationProps("partOf" => "Universidade de São Paulo").stringDataProps("name" => "Instituto de Matemática e Estatística").endEntry);
 populateProfessors; 
 #foreach my $k ( keys %peopleNames){
 #	print $k.new_ln;}
