@@ -196,7 +196,7 @@ sub thesisInfo{
 		if( my $supervisor = supervisor $t) {
 			#$supervisor = addPerson($supervisor);
 			$peopleNames{ $supervisor} = 1;
-			my $props = relationProps(('supervisedBy'=>$supervisor, $data_prop_prefix."made" => $title));
+			my $props = relationProps(('supervisedBy'=>$supervisor, "authorOf" => $title));
 			print $file_out indent( $new.relationProps('supervisedBy'=>$supervisor).endEntry);
 			return $props;
 		}
@@ -286,9 +286,9 @@ sub populateProfessors{
 			my @name = name($_);		#get name
 			keepName("@name");
 			my $new = newEntry("@name").class ('Person'). stringDataProps( nameProps @name).studyHistoric.relationProps("professorAt" => "IME").endEntry;
-			print $file_out $new;	
+			print $file_out $new_ln;	
 			print $file_out indent($new);
-			print $file_out $new;
+			print $file_out $new_ln;
 		}
 	}
 	close($file_professors);
@@ -344,7 +344,7 @@ sub addPublisher{
 	$name = $_[0];
 	$type = $_[1];
 	if( !$universitiesNames{$name} ) {
-		print $file_out indent( newEntry($name).class("#".$type).stringDataProps(($data_prop_prefix."name") => $name).endEntry);
+		print $file_out indent( newEntry($name).class("#".$type).stringDataProps("publisherName" => $name).endEntry);
 		$universitiesNames{$names} = 1;
 	}
 }
@@ -363,7 +363,7 @@ sub addPublications{
 		$new = $new.relationProps( "publishedAt" => $publisherName);
 		$new = $new.stringDataProps( 'documentTitle' => "$pub_title");
 		foreach my $a( @authors){
-			$new = $new.relationProps(( $data_prop_prefix."maker") => $a);
+			$new = $new.relationProps("writtenBy" => $a);
 		}
 		while ($l = nextLine $file_publications){
 			my $publicationYear = publicationYear($l);
@@ -407,7 +407,7 @@ sub copyLines {
 }
 
 copyLines; #copy ontology definition from file
-print $file_out indent(newEntry("IME").class("#Department").relationProps("partOf" => "Universidade de São Paulo").stringDataProps("name" => "Instituto de Matemática e Estatística").endEntry);
+print $file_out indent(newEntry("IME").class("#Department").relationProps("partOf" => "Universidade de São Paulo").stringDataProps('name' => "Instituto de Matemática e Estatística").endEntry);
 populateProfessors; 
 #foreach my $k ( keys %peopleNames){
 #	print $k.new_ln;}

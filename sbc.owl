@@ -689,6 +689,17 @@
     
 
 
+    <!-- http://www.ime.usp.br/~renata/FOAF-modified#authorOf -->
+
+    <owl:ObjectProperty rdf:about="&renata;FOAF-modified#authorOf">
+        <rdfs:domain rdf:resource="&renata;FOAF-modifiedPerson"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modifiedmade"/>
+        <rdfs:range rdf:resource="&renata;FOAF-modified#ResearchWork"/>
+        <owl:inverseOf rdf:resource="&renata;FOAF-modified#writtenBy"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#doctorateStudentAt -->
 
     <owl:ObjectProperty rdf:about="&renata;FOAF-modified#doctorateStudentAt">
@@ -812,6 +823,16 @@
 
     <owl:ObjectProperty rdf:about="&renata;FOAF-modified#undergraduateStudentAt">
         <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentAt"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modified#writtenBy -->
+
+    <owl:ObjectProperty rdf:about="&renata;FOAF-modified#writtenBy">
+        <rdfs:range rdf:resource="&renata;FOAF-modifiedPerson"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modifiedmaker"/>
+        <rdfs:domain rdf:resource="&renata;FOAF-modified#ResearchWork"/>
     </owl:ObjectProperty>
     
 
@@ -1224,6 +1245,14 @@
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#publicationYear">
         <rdfs:domain rdf:resource="&renata;FOAF-modified#ResearchWork"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modified#publisherName -->
+
+    <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#publisherName">
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modifiedname"/>
     </owl:DatatypeProperty>
     
 
