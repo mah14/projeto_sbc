@@ -420,6 +420,7 @@
         <rdfs:comment>Indicates a member of a Group</rdfs:comment>
         <rdfs:range rdf:resource="&renata;FOAF-modifiedAgent"/>
         <rdfs:domain rdf:resource="&renata;FOAF-modifiedGroup"/>
+        <owl:inverseOf rdf:resource="&renata;FOAF-modified#partOf"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
     </owl:ObjectProperty>
     
@@ -691,6 +692,14 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#doctorateStudentAt -->
 
     <owl:ObjectProperty rdf:about="&renata;FOAF-modified#doctorateStudentAt">
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#graduateStudentAt"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modified#graduateStudentAt -->
+
+    <owl:ObjectProperty rdf:about="&renata;FOAF-modified#graduateStudentAt">
         <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentAt"/>
     </owl:ObjectProperty>
     
@@ -699,7 +708,7 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#mastersStudentAt -->
 
     <owl:ObjectProperty rdf:about="&renata;FOAF-modified#mastersStudentAt">
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentAt"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#graduateStudentAt"/>
     </owl:ObjectProperty>
     
 
@@ -1157,7 +1166,7 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#doctorateStudentFrom -->
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#doctorateStudentFrom">
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentFrom"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#graduateStudentFrom"/>
     </owl:DatatypeProperty>
     
 
@@ -1165,7 +1174,7 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#doctorateStudentTo -->
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#doctorateStudentTo">
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentTo"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#graduateStudentTo"/>
     </owl:DatatypeProperty>
     
 
@@ -1179,10 +1188,26 @@
     
 
 
+    <!-- http://www.ime.usp.br/~renata/FOAF-modified#graduateStudentFrom -->
+
+    <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#graduateStudentFrom">
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentFrom"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modified#graduateStudentTo -->
+
+    <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#graduateStudentTo">
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentTo"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#mastersStudentFrom -->
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#mastersStudentFrom">
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentFrom"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#graduateStudentFrom"/>
     </owl:DatatypeProperty>
     
 
@@ -1190,15 +1215,7 @@
     <!-- http://www.ime.usp.br/~renata/FOAF-modified#mastersStudentTo -->
 
     <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#mastersStudentTo">
-        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#studentTo"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.ime.usp.br/~renata/FOAF-modified#publicationYear -->
-
-    <owl:DatatypeProperty rdf:about="&renata;FOAF-modified#publicationYear">
-        <rdfs:domain rdf:resource="&renata;FOAF-modified#ResearchWork"/>
+        <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modified#graduateStudentTo"/>
     </owl:DatatypeProperty>
     
 
