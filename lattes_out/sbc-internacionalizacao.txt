@@ -1,0 +1,111 @@
+1995 , http://dx.doi.org/10.1006/rtim.1995.1042 , 0, 
+1995 , http://dx.doi.org/10.1006/rtim.1995.1045 , 0, 
+1996 , http://dx.doi.org/10.1006/rtim.1996.0030 , 0, 
+1996 , http://dx.doi.org/10.1016/0031-3203(96)00007-6 , 0, 
+1997 , http://dx.doi.org/10.1109/34.625125 , 0, 
+1997 , http://dx.doi.org/10.1063/1.1148112 , 0, 
+1997 , http://dx.doi.org/10.1016/S0165-1684(97)00129-1 , 0, 
+1999 , http://dx.doi.org/10.1016/S0165-0270(99)00120-X , 0, 
+2000 , http://dx.doi.org/10.1016/S0262-8856(99)00053-0 , 0, 
+2000 , http://dx.doi.org/10.1023/A:1008373522375 , 1, Brazil; 
+2001 , http://dx.doi.org/10.1023/A:1011139203654 , 1, Brazil; 
+2001 , http://dx.doi.org/10.1023/A:1012276422769 , 1, Brazil; 
+2002 , http://dx.doi.org/10.1089/10665270252833217 , 0, 
+2002 , http://dx.doi.org/10.1109/34.982891 , 0, 
+2002 , http://dx.doi.org/10.1006/rtim.2002.0291 , 0, 
+2003 , http://dx.doi.org/10.1109/tvcg.2003.1175097 , 0, 
+2003 , http://dx.doi.org/10.1016/S1051-2004(02)00012-X , 0, 
+2003 , http://dx.doi.org/10.1016/S0304-4165(02)00446-4 , 0, 
+2003 , http://dx.doi.org/10.1023/A:1022847527229 , 1, Brazil; 
+2003 , http://dx.doi.org/10.1016/S0165-1684(02)00468-1 , 0, 
+2003 , http://dx.doi.org/10.1002/cfg.342 , 0, 
+2004 , http://dx.doi.org/10.1016/S0010-4825(03)00073-8 , 0, 
+2004 , http://dx.doi.org/10.1016/j.neuroimage.2004.07.027 , 0, 
+2004 , http://dx.doi.org/10.1016/j.rti.2004.05.006 , 0, 
+2004 , http://dx.doi.org/10.1016/j.rti.2004.06.002 , 0, 
+2004 , http://dx.doi.org/10.1016/j.fss.2003.07.003 , 0, 
+2004 , http://dx.doi.org/10.1093/bioinformatics/btg399 , 2, United States; Brazil; 
+2004 , http://dx.doi.org/10.1093/bioinformatics/bth074 , 2, United States; Brazil; 
+2005 , http://dx.doi.org/10.1016/j.cviu.2004.07.010 , 0, 
+2005 , http://dx.doi.org/10.1016/j.media.2005.05.008 , 0, 
+2005 , http://dx.doi.org/10.1002/ajpa.20209 , 0, 
+2005 , http://dx.doi.org/10.1016/j.patcog.2005.05.007 , 0, 
+2005 , http://dx.doi.org/10.1016/j.patrec.2004.11.017 , 0, 
+2006 , http://dx.doi.org/10.1145/1119766.1119771 , 1, Brazil; 
+2006 , http://dx.doi.org/10.1016/j.imavis.2006.02.014 , 0, 
+2006 , http://dx.doi.org/10.1007/s10044-006-0031-0 , 1, Brazil; 
+2006 , http://dx.doi.org/10.1109/TMI.2006.879967 , 0, 
+2006 , http://dx.doi.org/10.1109/TSMCB.2005.857095 , 0, 
+2007 , http://dx.doi.org/10.1007/s10851-007-0035-4 , 1, Brazil; 
+2007 , http://dx.doi.org/10.1186/1471-2105-8-169 , 1, Brazil; 
+2007 , http://dx.doi.org/10.1364/JOSAA.24.001448 , 3, Australia; New Zealand; Brazil; 
+2007 , http://dx.doi.org/10.1155/2007/73109 , 2, United States; Brazil; 
+2008 , http://dx.doi.org/10.1016/j.pscychresns.2007.08.006 , 0, 
+2008 , http://dx.doi.org/10.1192/bjp.bp.107.048793 , 3, Canada; United States; Brazil; 
+2008 , http://dx.doi.org/10.1016/j.biopsych.2008.06.001 , 0, 
+2008 , http://dx.doi.org/10.1109/tcbb.2007.70259 , 0, 
+2008 , http://dx.doi.org/10.1186/1471-2105-9-451 , 1, Brazil; 
+2008 , http://dx.doi.org/10.1109/JSTSP.2008.923841 , 0, 
+2009 , http://dx.doi.org/10.1016/j.biopsych.2009.03.023 , 0, 
+2009 , http://dx.doi.org/10.1007/s00406-009-0002-8 , 3, United States; United Kingdom; Brazil; 
+2009 , http://dx.doi.org/10.1016/j.media.2008.05.005 , 0, 
+2009 , http://dx.doi.org/10.1007/s10851-009-0159-9 , 1, Brazil; 
+2009 , http://dx.doi.org/10.1016/j.jneumeth.2008.10.037 , 0, 
+2009 , http://dx.doi.org/10.1016/j.jvcir.2009.01.002 , 0, 
+2009 , http://dx.doi.org/10.1007/s00371-009-0373-x , 1, Brazil; 
+2009 , http://dx.doi.org/10.1590/S0104-65002009000400004 , 1, Brazil; 
+2009 , http://dx.doi.org/10.1590/S0100-879X2009000700008 , 1, Brazil; 
+2010 , http://dx.doi.org/10.1118/1.3360180 , 2, Australia; Brazil; 
+2010 , http://dx.doi.org/10.1016/j.patcog.2009.06.012 , 0, 
+2010 , http://dx.doi.org/10.1016/j.cviu.2009.08.001 , 0, 
+2011 , http://dx.doi.org/10.1016/j.patrec.2010.05.016 , 0, 
+2011 , http://dx.doi.org/10.1016/j.cag.2011.01.012 , 0, 
+2011 , http://dx.doi.org/10.1007/s12042-011-9079-0 , 5, France; United States; Australia; South Africa; Brazil; 
+2011 , http://dx.doi.org/10.1186/1471-2164-12-S4-S13 , 3, United States; Georgia; Brazil; 
+2011 , http://dx.doi.org/10.1111/j.1537-2995.2010.02799.x , 1, Brazil; 
+2011 , http://dx.doi.org/10.1155/2011/304875 , 1, Brazil; 
+2011 , http://dx.doi.org/10.1186/1532-429X-13-S1-P19 , 2, United States; Brazil; 
+2011 , http://dx.doi.org/10.1186/1532-429X-13-S1-O44 , 2, United States; Brazil; 
+2011 , http://dx.doi.org/10.1089/cmb.2010.0118 , 0, 
+2011 , http://dx.doi.org/10.1016/j.patrec.2010.02.016 , 0, 
+2011 , http://dx.doi.org/10.1186/1752-0509-5-61 , 1, Brazil; 
+2011 , http://dx.doi.org/10.1186/1753-6561-5-S2-S5 , 1, Brazil; 
+2012 , http://dx.doi.org/10.1007/s11263-012-0541-8 , 1, Brazil; 
+2012 , http://dx.doi.org/10.1111/j.1537-2995.2011.03248.x , 1, Brazil; 
+2012 , http://dx.doi.org/10.1111/j.1537-2995.2011.03344.x , 1, Brazil; 
+2012 , http://dx.doi.org/10.1111/j.1537-2995.2011.03387.x , 0, 
+2012 , http://dx.doi.org/10.1186/1532-429X-14-S1-P238 , 4, United States; United Kingdom; Brazil; Germany; 
+2012 , http://dx.doi.org/10.1186/1532-429X-14-S1-P35 , 2, United States; Brazil; 
+2012 , http://dx.doi.org/10.1186/1532-429X-14-S1-O49 , 3, United States; United Kingdom; Brazil; 
+2012 , http://dx.doi.org/10.1186/1532-429X-14-70 , 2, United States; Brazil; 
+2012 , http://dx.doi.org/10.1016/j.jpsychires.2012.09.001 , 0, 
+2012 , http://dx.doi.org/10.1002/mrm.24488 , 4, United States; United Kingdom; Brazil; Germany; 
+2012 , http://dx.doi.org/10.1109/tip.2012.2188034 , 0, 
+2012 , http://dx.doi.org/10.1007/s10851-012-0333-3 , 2, United States; Brazil; 
+2012 , http://dx.doi.org/10.1142/S0218001412650016 , 0, 
+2012 , http://dx.doi.org/10.1016/j.patcog.2011.06.016 , 0, 
+2012 , http://dx.doi.org/10.1016/j.patcog.2011.08.017 , 0, 
+2012 , http://dx.doi.org/10.1186/1471-2164-13-S6-S7 , 1, Brazil; 
+2013 , http://dx.doi.org/10.1016/j.dss.2013.02.008 , 0, 
+2013 , http://dx.doi.org/10.1111/j.1537-2995.2012.03840.x , 0, 
+2013 , http://dx.doi.org/10.1111/j.1537-2995.2012.03820.x , 1, Brazil; 
+2013 , http://dx.doi.org/10.1016/j.transci.2013.09.009 , 0, 
+2013 , http://dx.doi.org/10.11606/issn.2316-9036.v0i97p71-81 , 0, 
+2013 , http://dx.doi.org/10.1186/1532-429X-15-S1-P2 , 2, United States; Brazil; 
+2013 , http://dx.doi.org/10.1371/journal.pone.0072795 , 2, Brazil; Germany; 
+2013 , http://dx.doi.org/10.1016/j.media.2013.06.006 , 0, 
+2013 , http://dx.doi.org/10.1039/c3mb25475e , 2, United Kingdom; Brazil; 
+2013 , http://dx.doi.org/10.1016/j.ins.2012.10.027 , 0, 
+2013 , http://dx.doi.org/10.1109/tcbb.2012.169 , 0, 
+2014 , http://dx.doi.org/10.5581/1516-8484.20140033 , 0, 
+2014 , http://dx.doi.org/10.1111/vox.12111 , 1, Brazil; 
+2014 , http://dx.doi.org/10.1111/tme.12124 , 1, Brazil; 
+2014 , http://dx.doi.org/10.1590/0102-311x00024914 , 1, Brazil; 
+2014 , http://dx.doi.org/10.1161/CIRCULATIONAHA.113.005841 , 0, 
+2014 , http://dx.doi.org/10.1186/1532-429X-16-S1-P17 , 2, United States; Brazil; 
+2014 , http://dx.doi.org/10.1186/1532-429X-16-S1-O68 , 3, United States; United Kingdom; Brazil; 
+2014 , http://dx.doi.org/10.1016/j.neulet.2014.06.061 , 0, 
+2014 , http://dx.doi.org/10.1109/TIP.2013.2288867 , 0, 
+2014 , http://dx.doi.org/10.1016/j.gene.2014.03.010 , 0, 
+2014 , http://dx.doi.org/10.1002/asi.23010 , 1, Brazil; 
+2014 , http://dx.doi.org/10.1016/j.ins.2014.02.096 , 0, 

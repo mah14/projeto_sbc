@@ -1,0 +1,24 @@
+nodedef> name VARCHAR, idLattes VARCHAR, label VARCHAR, rotulo VARCHAR, lat DOUBLE, lon DOUBLE, collaborationRank DOUBLE, producaoBibliografica DOUBLE, artigoEmPeriodico DOUBLE, livro DOUBLE, capituloDeLivro DOUBLE, trabalhoEmCongresso DOUBLE, resumoExpandido DOUBLE, resumo DOUBLE, color VARCHAR
+0,4575931307749163,Carlos Hitoshi Morimoto,Professor,-23.5598580,-46.7329875,0.15,71,7,3,6,42,3,10,'0,0,153'
+1,0131770792108992,Joao Eduardo Ferreira,Professor,-23.5598580,-46.7329875,1.34945,103,29,4,2,55,10,3,'0,0,153'
+2,5416099300504556,Kelly Rosa Braghetto,Professor,-23.5791684,-46.7085727,1.20144,23,6,0,2,9,3,3,'0,0,153'
+3,0926213060635986,Marcel Parolin Jackowski,Professor,-23.5598580,-46.7329875,1.0,76,28,0,1,16,3,28,'0,0,153'
+4,5251389003736909,Paulo Andre Vechiatto de Miranda,Professor,-23.5598580,-46.7329875,1.0,45,10,0,1,32,0,2,'0,0,153'
+5,2240951178648368,Roberto Marcondes Cesar Junior,Professor,-23.5598580,-46.7329875,1.25802,178,50,9,5,93,5,16,'0,0,153'
+6,9283304583756076,Ronaldo Fumio Hashimoto,Professor,-23.5598580,-46.7329875,0.862876,56,18,0,1,27,3,7,'0,0,153'
+7,1047633546096022,Arnaldo Mandel,[Sem rotulo],-23.5598580,-46.7329875,0.15,1,0,1,0,0,0,0,'0,102,0'
+8,7931486543023117,Jose Coelho de Pina Junior,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+9,2342739419247924,Fabio Kon,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+10,3174379270045864,Yoshiko Wakabayashi,[Sem rotulo],-23.5598580,-46.7329875,0.15,1,0,1,0,0,0,0,'0,102,0'
+11,2240951178648368,Roberto Marcondes Cesar Junior,[Sem rotulo],-23.5598580,-46.7329875,0.328219,0,0,0,0,0,0,0,'0,102,0'
+12,9710931908673924,Andre de Oliveira Gomes,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+13,0247990329725342,Andre Fujita,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+14,8548608291351316,Renata Wassermann,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+15,0926213060635986,Marcel Parolin Jackowski,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+16,8571722708574643,Flavio Soares Correa da Silva,[Sem rotulo],-23.5598580,-46.7329875,0.15,0,0,0,0,0,0,0,'0,102,0'
+edgedef> node1 VARCHAR, node2 VARCHAR, weight DOUBLE
+1,2,11.0
+1,5,1.0
+3,4,1.0
+5,6,4.0
+5,11,1.0
