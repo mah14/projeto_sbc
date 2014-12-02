@@ -285,7 +285,7 @@ sub populateProfessors{
 		if( isNewProfessorEntry($_)){
 			my @name = name($_);		#get name
 			keepName("@name");
-			my $new = newEntry("@name").class ('Person'). stringDataProps( nameProps @name).studyHistoric.relationProps("affiliatedTo" => "IME").endEntry;
+			my $new = newEntry("@name").class ('Person'). stringDataProps( nameProps @name).studyHistoric.relationProps("professorAt" => "IME").endEntry;
 			print $file_out $new;	
 			print $file_out indent($new);
 			print $file_out $new;
