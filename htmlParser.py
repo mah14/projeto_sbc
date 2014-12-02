@@ -35,11 +35,13 @@ def MergeOnthologies():
     onto1 = open("populado.owl", "r")
     onto2 = open("populado2.owl", "r")
     ontoFinal = open("populadoFinal.owl", "w")
+    l = onto1.readline()
     while True:
-        l = onto1.readline()
-        if not (lastLine in l):
+        l2 = onto1.readline()
+        if not l2:
             break
         ontoFinal.write(l)
+        l = l2
     while True:
         l = onto2.readline()
         if not l:
